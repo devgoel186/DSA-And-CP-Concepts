@@ -30,3 +30,7 @@ int main() {
     if(l > u)
         cout << "Not found!";
 }
+
+// The complexity for this is O(log n), as length of array 
+// to be searched decreases with each iteration by a factor
+// of 2, resulting in "log n base 2" as number of operations
