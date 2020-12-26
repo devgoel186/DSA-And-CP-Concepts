@@ -4,8 +4,9 @@ Chapter-Wise concepts and implementations of important algorithms and CP concept
 
 ## CONTENTS
 
+* Chapterwise C++ Concepts
 * Explanation for Algos
-* Snippets and Pseudo Codes included
+* Snippets and/or Pseudo Codes included
 * Compiled material from multiple sources
 
 ### DS AND ALGOS COURSES WITH SOLUTIONS
