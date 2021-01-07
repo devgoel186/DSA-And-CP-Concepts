@@ -7,10 +7,7 @@ int last_index(int a[], int size, int x)
         return -1;
     int temp = last_index(a + 1, size - 1, x);
 
-    if (temp == -1)
-        return (a[0] == x) ? 0 : -1;
-    else
-        return temp + 1;
+    return (temp == -1) ? (a[0] == x) ? 0 : -1 : temp + 1;
 }
 
 int main()
