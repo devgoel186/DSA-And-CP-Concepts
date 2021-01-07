@@ -11,7 +11,7 @@ int first_index(int a[], int size, int x)
     else
     {
         int temp = first_index(a + 1, size - 1, x);
-        return (temp != 1) ? temp + 1 : -1;
+        return (temp != -1) ? temp + 1 : -1;
     }
 }
 
