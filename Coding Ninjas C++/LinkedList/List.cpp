@@ -64,13 +64,41 @@ Node *insertNode(Node *head, int i, int data)
         return head;
     }
 
+    while (temp != NULL && count < i - 1)
+    {
+        temp = temp->next;
+        count++;
+    }
+
+    if (temp != NULL)
+    {
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+    return head;
+}
+
+Node *deleteNode(Node *head, int i)
+{
+    int count = 0;
+    Node *temp = head;
+
+    if (i == 0)
+    {
+        head = head->next;
+        return head;
+    }
+
     while (count < i - 1)
     {
         temp = temp->next;
         count++;
     }
-    newNode->next = temp->next;
-    temp->next = newNode;
+
+    if (temp != NULL)
+    {
+        temp->next = (temp->next)->next;
+    }
     return head;
 }
 
@@ -100,6 +128,15 @@ int main()
     cin >> i >> data;
 
     head2 = insertNode(head2, i, data);
+
+    cout << "\nThe new Linked List is :" << endl;
+    print(head2);
+
+    cout << "Enter data for node to be deleted" << endl;
+
+    cin >> i;
+
+    head2 = deleteNode(head2, i);
 
     cout << "\nThe new Linked List is :" << endl;
     print(head2);
