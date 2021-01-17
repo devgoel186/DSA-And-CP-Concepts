@@ -67,25 +67,13 @@ Node *insertNode(Node *head, int i, int data)
 
 Node *deleteNode(Node *head, int i)
 {
-    int count = 0;
-    Node *temp = head;
-
-    if (i == 0)
+    if (i <= 0)
     {
         head = head->next;
         return head;
     }
 
-    while (count < i - 1)
-    {
-        temp = temp->next;
-        count++;
-    }
-
-    if (temp != NULL)
-    {
-        temp->next = (temp->next)->next;
-    }
+    head->next = deleteNode(head->next, i - 1);
     return head;
 }
 
