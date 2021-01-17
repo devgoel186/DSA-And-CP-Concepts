@@ -26,6 +26,31 @@ Node *takeInput()
     return head;
 }
 
+Node *takeInputWithTail()
+{
+    int data;
+    cin >> data;
+    Node *head = NULL;
+    Node *tail = NULL;
+    while (data != -1)
+    {
+        Node *newNode = new Node(data);
+        if (head == NULL)
+        {
+            head = newNode;
+            tail = newNode;
+        }
+
+        else
+        {
+            tail->next = newNode;
+            tail = tail->next;
+        }
+        cin >> data;
+    }
+    return head;
+}
+
 void print(Node *head)
 {
     while (head != NULL)
@@ -37,7 +62,12 @@ void print(Node *head)
 
 int main()
 {
-    Node *head = takeInput();
-    cout << "The List is : \n";
-    print(head);
+    // Node *head = takeInput();
+    Node *head2 = takeInputWithTail();
+
+    // cout << "\nThe Linked List is :" << endl;
+    cout << "\nThe Linked List is :" << endl;
+
+    // print(head);
+    print(head2);
 }
