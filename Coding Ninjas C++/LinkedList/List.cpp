@@ -51,6 +51,29 @@ Node *takeInputWithTail()
     return head;
 }
 
+Node *insertNode(Node *head, int i, int data)
+{
+    Node *newNode = new Node(data);
+    int count = 0;
+    Node *temp = head;
+
+    if (i == 0)
+    {
+        newNode->next = head;
+        head = newNode;
+        return head;
+    }
+
+    while (count < i - 1)
+    {
+        temp = temp->next;
+        count++;
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
+    return head;
+}
+
 void print(Node *head)
 {
     while (head != NULL)
@@ -69,5 +92,15 @@ int main()
     cout << "\nThe Linked List is :" << endl;
 
     // print(head);
+    print(head2);
+
+    cout << "Enter data for node to be inserted" << endl;
+
+    int i, data;
+    cin >> i >> data;
+
+    head2 = insertNode(head2, i, data);
+
+    cout << "\nThe new Linked List is :" << endl;
     print(head2);
 }
