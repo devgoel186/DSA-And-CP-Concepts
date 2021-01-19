@@ -86,7 +86,7 @@ void print(Node *head)
 {
     while (head != NULL)
     {
-        cout << head->data << endl;
+        cout << head->data << " ";
         head = head->next;
     }
 }

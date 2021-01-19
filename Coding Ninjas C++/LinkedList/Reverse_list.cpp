@@ -27,16 +27,20 @@ Node *takeInputWithTail()
     return head;
 }
 
-Node *findMidpoint(Node *head)
+Node *reverseLL(Node *head)
 {
-    Node *slow = head;
-    Node *fast = head->next;
-    while (fast != NULL && fast->next != NULL)
+    if (head == NULL || head->next == NULL)
+        return head;
+    Node *subReverse = reverseLL(head->next);
+
+    Node *temp = subReverse;
+    while (temp->next != NULL)
     {
-        slow = slow->next;
-        fast = (fast->next)->next;
+        temp = temp->next;
     }
-    return slow;
+    temp->next = head;
+    head->next = NULL;
+    return subReverse;
 }
 
 void print(Node *head)
@@ -52,9 +56,7 @@ int main()
 {
     Node *head = takeInputWithTail();
 
-    Node *midpoint = findMidpoint(head);
-    cout << "Midpoint - " << midpoint->data << endl;
-
-    cout << "\nThe Linked List is :" << endl;
-    print(head);
+    Node *reverseHead = reverseLL(head);
+    cout << "\nThe Reversed Linked List is :" << endl;
+    print(reverseHead);
 }
