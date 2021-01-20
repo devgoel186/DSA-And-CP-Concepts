@@ -1,26 +1,22 @@
 #include <iostream>
 using namespace std;
-#include "./StackUsingDynamicArray.cpp"
+#include "./StackUsingTemplates.cpp"
 
 int main()
 {
     // Creating stack
-    StackUsingArray s;
-    s.push(10);
-    s.push(20);
-    s.push(30);
-    s.push(40);
-    s.push(50);
-    s.push(60);
-    s.push(25);
-    s.push(40);
+    // StackUsingArray<int> s;
+    StackUsingArray<char> s;
+    s.push(100);
+    s.push(101);
+    s.push(102);
+    s.push(103);
+    s.push(104);
 
     // top() function
     cout << s.top() << endl;
 
     // pop() operations
-    cout << s.pop() << endl;
-    cout << s.pop() << endl;
     cout << s.pop() << endl;
     cout << s.pop() << endl;
     cout << s.pop() << endl;
