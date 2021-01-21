@@ -1,13 +1,19 @@
 #include <iostream>
 using namespace std;
-#include "./QueueUsingArray.h"
+#include "./QueueUsingDynamicArray.h"
 
 int main()
 {
-    QueueUsingArray<int> q(5);
+    QueueUsingDynamicArray<int> q;
 
     q.enqueue(10);
     q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
     q.enqueue(30);
     q.enqueue(40);
     q.enqueue(50);
