@@ -78,8 +78,21 @@ void printTree(TreeNode<int> *root)
     }
 }
 
+int calculateHeight(TreeNode<int> *root)
+{
+    int max = 0;
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        int ans = calculateHeight(root->children[i]);
+        if (ans > max)
+            max = ans;
+    }
+    return max + 1;
+}
+
 int main()
 {
     TreeNode<int> *root = takeInputLevelWise();
     printTree(root);
+    cout << "Height = " << calculateHeight(root) << endl;
 }
