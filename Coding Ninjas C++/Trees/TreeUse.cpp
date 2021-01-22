@@ -90,9 +90,28 @@ int calculateHeight(TreeNode<int> *root)
     return max + 1;
 }
 
+void printAtDepthK(TreeNode<int> *root, int k)
+{
+    if (root == NULL)
+        return;
+    if (k == 0)
+    {
+        cout << root->data << " ";
+        return;
+    }
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        printAtDepthK(root->children[i], k - 1);
+    }
+}
+
 int main()
 {
     TreeNode<int> *root = takeInputLevelWise();
     printTree(root);
     cout << "Height = " << calculateHeight(root) << endl;
+    int k;
+    cout << "Enter level number to print elements:";
+    cin >> k;
+    printAtDepthK(root, k);
 }
