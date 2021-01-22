@@ -8,6 +8,14 @@ Examples with explanation included.
 - Functions are push(), pop(), top(), size(), and isEmpty()
 - Stacks are implemented in a LIFO manner (Last In First Out)
 
+**INBUILT C++ STACK FUNCTIONS:**
+
+1. push(),
+2. pop() [doesn't return element, only removes],
+3. top(),
+4. size(),
+5. empty()
+
 ### Contents of Stacks
 
 - Stacks using array
@@ -26,4 +34,18 @@ Examples with explanation included.
   - isEmpty()
 - Stacks are implemented in a LIFO manner (Last In First Out)
 
+**INBUILT C++ QUEUE FUNCTIONS:**
+
+1. push(),
+2. pop() [doesn't return element, only removes],
+3. top(),
+4. size(),
+5. empty()
+
 ### Contents of Queues
+
+- Queues using array
+- Queues using dynamic arrays
+- Queues using inbuilt queue
+- Queues using templates for user-defined datatype
+- Queues using linked lists and templates
