@@ -52,25 +52,24 @@ TreeNode<int> *takeInputLevelWise()
 
 void printTree(TreeNode<int> *root)
 {
-    if (root == NULL) // This is not a base case for our recursion
-        return;       // this is edge case.
-    cout << root->data << " : ";
-    for (int i = 0; i < root->children.size(); i++)
-        cout << root->children[i]->data << ",";
-    cout << endl;
-    for (int i = 0; i < root->children.size(); i++)
-        printTree(root->children[i]);
+    queue<TreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+    while (pendingNodes.size() != 0)
+    {
+        TreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+        cout << front->data << " : ";
+        for (int i = 0; i < front->children.size(); i++)
+        {
+            cout << front->children[i]->data << ",";
+            pendingNodes.push(front->children[i]);
+        }
+        cout << endl;
+    }
 }
 
 int main()
 {
-    // TreeNode<int> *root = new TreeNode<int>(1);
-    // TreeNode<int> *node1 = new TreeNode<int>(2);
-    // TreeNode<int> *node2 = new TreeNode<int>(3);
-
-    // root->children.push_back(node1);
-    // root->children.push_back(node2);
-    // TreeNode<int> *root = takeInput();
     TreeNode<int> *root = takeInputLevelWise();
     printTree(root);
 }
