@@ -13,4 +13,12 @@ public:
     {
         this->data = data;
     }
+
+    ~TreeNode() // Destructor function to delete entire tree
+    {
+        for (int i = 0; i < this->children.size(); i++)
+        {
+            delete children[i];
+        }
+    }
 };

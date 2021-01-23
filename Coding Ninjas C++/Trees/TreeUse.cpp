@@ -78,6 +78,28 @@ void printTree(TreeNode<int> *root)
     }
 }
 
+void preOrder(TreeNode<int> *root)
+{
+    if (root == NULL)
+        return;
+    cout << root->data << " ";
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        preOrder(root->children[i]);
+    }
+}
+
+void postOrder(TreeNode<int> *root)
+{
+    if (root == NULL)
+        return;
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        postOrder(root->children[i]);
+    }
+    cout << root->data << " ";
+}
+
 int calculateHeight(TreeNode<int> *root)
 {
     int max = 0;
@@ -117,14 +139,42 @@ void printAtDepthK(TreeNode<int> *root, int k)
     }
 }
 
+void deleteTree(TreeNode<int> *root)
+{
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        deleteTree(root->children[i]);
+    }
+    delete root;
+}
+
 int main()
 {
+    // Tree data - 1 3 2 3 4 2 5 6 0 0 0 0
+
     TreeNode<int> *root = takeInputLevelWise();
-    printTree(root);
+    // printTree(root);
+    cout << "\nPreorder traversal : ";
+    preOrder(root);
+    cout << "\nPostorder traversal : ";
+    postOrder(root);
+    cout << endl;
+
     cout << "Height = " << calculateHeight(root) << endl;
     int k;
+
     cout << "Enter level number to print elements:";
     cin >> k;
     printAtDepthK(root, k);
+
     cout << "Number of Leafs = " << countLeafs(root) << endl;
+
+    delete root; // We have created a custom destructor in the class file
+                 // to delete the tree and its children from heap memory
+                 // Deleting root here will call the destructor function
+                 // of the class.
+
+    /* deleteTree(root); // Or instead of using destructor, we can call this
+                      // function created in this file which will delete the
+                      // tree recursively.*/
 }
