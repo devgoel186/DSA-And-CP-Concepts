@@ -9,7 +9,7 @@ Types of traversals for trees :
 
 - Preorder traversal -> Node, Left, Right
 - Postorder traversal -> Left, Right, Node
-- Inorder traversal -> Left, Node, Right
+- Inorder traversal -> Left, Node, Right [**Inorder traversal exists only for binary trees**]
 
 ## Contents
 
