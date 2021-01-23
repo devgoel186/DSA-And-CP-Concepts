@@ -21,14 +21,6 @@ void printTreeLevelWise(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
         return;
-    // cout << root->data << ":";
-    // if (root->left)
-    //     cout << "L" << root->left->data << " ";
-    // if (root->right)
-    //     cout << "R" << root->right->data << " ";
-    // cout << endl;
-    // printTree(root->left);
-    // printTree(root->right);
     queue<BinaryTreeNode<int> *> pendingNodes;
     pendingNodes.push(root);
     while (pendingNodes.size() != 0)
@@ -48,6 +40,13 @@ void printTreeLevelWise(BinaryTreeNode<int> *root)
         }
         cout << endl;
     }
+}
+
+int numNodes(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+        return 0;
+    return 1 + numNodes(root->left) + numNodes(root->right);
 }
 
 BinaryTreeNode<int> *takeInput()
@@ -109,12 +108,11 @@ BinaryTreeNode<int> *takeInputLevelWise()
 
 int main()
 {
+    // 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
     // BinaryTreeNode<int> *root = takeInput();
     BinaryTreeNode<int> *root = takeInputLevelWise();
-    // BinaryTreeNode<int> *node1 = new BinaryTreeNode<int>(2);
-    // BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
-    // root->left = node1;
-    // root->right = node2;
+
     printTreeLevelWise(root);
+    cout << "Number of nodes = " << numNodes(root) << endl;
     delete root;
 }
