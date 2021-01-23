@@ -90,6 +90,18 @@ int calculateHeight(TreeNode<int> *root)
     return max + 1;
 }
 
+int countLeafs(TreeNode<int> *root)
+{
+    if (root->children.size() == 0)
+        return 1;
+    int leafs = 0;
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        leafs += countLeafs(root->children[i]);
+    }
+    return leafs;
+}
+
 void printAtDepthK(TreeNode<int> *root, int k)
 {
     if (root == NULL)
@@ -114,4 +126,5 @@ int main()
     cout << "Enter level number to print elements:";
     cin >> k;
     printAtDepthK(root, k);
+    cout << "Number of Leafs = " << countLeafs(root) << endl;
 }
