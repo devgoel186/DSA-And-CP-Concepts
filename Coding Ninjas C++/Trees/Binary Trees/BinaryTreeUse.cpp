@@ -17,6 +17,39 @@ void printTree(BinaryTreeNode<int> *root)
     printTree(root->right);
 }
 
+void printTreeLevelWise(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+        return;
+    // cout << root->data << ":";
+    // if (root->left)
+    //     cout << "L" << root->left->data << " ";
+    // if (root->right)
+    //     cout << "R" << root->right->data << " ";
+    // cout << endl;
+    // printTree(root->left);
+    // printTree(root->right);
+    queue<BinaryTreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+    while (pendingNodes.size() != 0)
+    {
+        BinaryTreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+        cout << front->data << " : ";
+        if (front->left != NULL)
+        {
+            cout << "L" << front->left->data << " ";
+            pendingNodes.push(front->left);
+        }
+        if (front->right != NULL)
+        {
+            cout << "R" << front->right->data << " ";
+            pendingNodes.push(front->right);
+        }
+        cout << endl;
+    }
+}
+
 BinaryTreeNode<int> *takeInput()
 {
     int rootData;
@@ -82,6 +115,6 @@ int main()
     // BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
     // root->left = node1;
     // root->right = node2;
-    printTree(root);
+    printTreeLevelWise(root);
     delete root;
 }
