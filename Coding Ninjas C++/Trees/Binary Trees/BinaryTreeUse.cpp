@@ -69,6 +69,43 @@ void inorder(BinaryTreeNode<int> *root)
     inorder(root->right);
 }
 
+BinaryTreeNode<int> *buildTreeHelper(int *in, int *pre, int inS, int inE, int preS, int preE)
+{
+    if (inS > inE)
+        return NULL;
+
+    int rootData = pre[preS];
+    int rootIndexIn = -1;
+    for (int i = inS; i <= inE; i++)
+    {
+        if (in[i] == rootData)
+        {
+            rootIndexIn = i;
+            break;
+        }
+    }
+
+    int lInS = inS;
+    int lInE = rootIndexIn - 1;
+    int lPreS = preS + 1;
+    int lPreE = lInE - lInS + lPreS;
+    int rPreS = lPreE + 1;
+    int rPreE = preE;
+    int rInS = rootIndexIn + 1;
+    int rInE = inE;
+
+    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(rootData);
+    root->left = buildTreeHelper(in, pre, lInS, lInE, lPreS, lPreE);
+    root->right = buildTreeHelper(in, pre, rInS, rInE, rPreS, rPreE);
+
+    return root;
+}
+
+BinaryTreeNode<int> *buildTree(int *in, int *pre, int size)
+{
+    return buildTreeHelper(in, pre, 0, size - 1, 0, size - 1);
+}
+
 int numNodes(BinaryTreeNode<int> *root)
 {
     if (root == NULL)
@@ -137,17 +174,18 @@ int main()
 {
     // 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
     // BinaryTreeNode<int> *root = takeInput();
-    BinaryTreeNode<int> *root = takeInputLevelWise();
-
+    // BinaryTreeNode<int> *root = takeInputLevelWise();
+    int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
+    int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
+    BinaryTreeNode<int> *root = buildTree(in, pre, sizeof(in) / sizeof(in[0]));
     printTreeLevelWise(root);
-
+    cout << "Preorder : ";
     preorder(root);
-    cout << endl;
+    cout << "\nPostorder : ";
     postorder(root);
-    cout << endl;
+    cout << "\nInorder : ";
     inorder(root);
     cout << endl;
-
     cout << "Number of nodes = " << numNodes(root) << endl;
     delete root;
 }
