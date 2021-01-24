@@ -132,18 +132,66 @@ bool isBST(BinarySearchTreeNode<int> *root)
     return output;
 }
 
+class isBSTReturn
+{
+public:
+    bool isBST;
+    int minimum;
+    int maximum;
+};
+
+isBSTReturn isBSTImproved(BinarySearchTreeNode<int> *root)
+{
+    // Below statements take constant time to execute
+    if (root == NULL)
+    {
+        isBSTReturn output;
+        output.isBST = true;
+        output.minimum = INT_MAX;
+        output.maximum = INT_MIN;
+        return output;
+    }
+
+    // Below two statements take O(n) time complexity,
+    // thus making the entire isBSTImproved function to execute
+    // in linear time.
+    isBSTReturn leftOutput = isBSTImproved(root->left);
+    isBSTReturn rightOutput = isBSTImproved(root->right);
+
+    // Below statements take constant time to execute
+    int minimum = min({root->data, leftOutput.minimum, rightOutput.minimum});
+    int maximum = max({root->data, leftOutput.maximum, rightOutput.maximum});
+    bool final = (root->data > leftOutput.maximum) &&
+                 (root->data < rightOutput.minimum) &&
+                 leftOutput.isBST &&
+                 rightOutput.isBST;
+
+    isBSTReturn output;
+    output.minimum = minimum;
+    output.maximum = maximum;
+    output.isBST = final;
+    return output;
+}
+
 int main()
 {
     // 4 2 6 1 3 5 7 -1 -1 -1 -1 -1 -1 -1 -1
 
     BinarySearchTreeNode<int> *root = takeInputLevelWise();
-    cout << (isBST(root) ? "Yes" : "No") << endl;
-    printTreeLevelWise(root);
 
-    BinarySearchTreeNode<int> *resultNode = searchNode(root, 7);
-    cout << "Result Node data = " << resultNode->data << endl;
+    // cout << (isBST(root) ? "Yes" : "No") << endl;
+    bool isBST = isBSTImproved(root).isBST;
+    cout << "isBST? -> " << (isBST ? "Yes" : "No") << endl;
 
-    printRange(root, 6, 10);
+    if (isBST)
+    {
+        printTreeLevelWise(root);
+
+        BinarySearchTreeNode<int> *resultNode = searchNode(root, 7);
+        cout << "Result Node data = " << resultNode->data << endl;
+
+        printRange(root, 6, 10);
+    }
 
     delete root;
 }
