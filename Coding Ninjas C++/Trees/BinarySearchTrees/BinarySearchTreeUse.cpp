@@ -1,0 +1,119 @@
+#include <iostream>
+using namespace std;
+#include "./BinarySearchTreeNode.h"
+#include <algorithm>
+#include <queue>
+
+BinarySearchTreeNode<int> *takeInputLevelWise()
+{
+    int rootData;
+    cout << "Enter root data" << endl;
+    cin >> rootData;
+    if (rootData == -1)
+        return NULL;
+
+    BinarySearchTreeNode<int> *root = new BinarySearchTreeNode<int>(rootData);
+
+    queue<BinarySearchTreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+
+    while (pendingNodes.size() != 0)
+    {
+        BinarySearchTreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+
+        cout << "Enter left child of " << front->data << endl;
+        int leftChildData;
+        cin >> leftChildData;
+        if (leftChildData != -1)
+        {
+            BinarySearchTreeNode<int> *child = new BinarySearchTreeNode<int>(leftChildData);
+            front->left = child;
+            pendingNodes.push(child);
+        }
+
+        cout << "Enter right child of " << front->data << endl;
+        int rightChildData;
+        cin >> rightChildData;
+        if (rightChildData != -1)
+        {
+            BinarySearchTreeNode<int> *child = new BinarySearchTreeNode<int>(rightChildData);
+            front->right = child;
+            pendingNodes.push(child);
+        }
+    }
+    return root;
+}
+
+void printTreeLevelWise(BinarySearchTreeNode<int> *root)
+{
+    if (root == NULL)
+        return;
+    queue<BinarySearchTreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+    while (pendingNodes.size() != 0)
+    {
+        BinarySearchTreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+        cout << front->data << " : ";
+        if (front->left != NULL)
+        {
+            cout << "L" << front->left->data << " ";
+            pendingNodes.push(front->left);
+        }
+        if (front->right != NULL)
+        {
+            cout << "R" << front->right->data << " ";
+            pendingNodes.push(front->right);
+        }
+        cout << endl;
+    }
+}
+
+void printRange(BinarySearchTreeNode<int> *root, int start, int end)
+{
+    if (root == NULL)
+        return;
+    if (end < root->data)
+        printRange(root->left, start, end);
+    else if (start > root->data)
+        printRange(root->right, start, end);
+    else
+    {
+        printRange(root->left, start, end);
+        if (root->data >= start && root->data <= end)
+            cout << root->data << " ";
+        printRange(root->right, start, end);
+    }
+}
+
+BinarySearchTreeNode<int> *searchNode(BinarySearchTreeNode<int> *root, int k)
+{
+    if (root == NULL)
+        return NULL;
+
+    BinarySearchTreeNode<int> *result;
+
+    if (root->data == k)
+        return root;
+    else if (root->data < k)
+        result = searchNode(root->right, k);
+    else
+        result = searchNode(root->left, k);
+    return result;
+}
+
+int main()
+{
+    // 4 2 6 1 3 5 7 -1 -1 -1 -1 -1 -1 -1 -1
+
+    BinarySearchTreeNode<int> *root = takeInputLevelWise();
+    printTreeLevelWise(root);
+
+    BinarySearchTreeNode<int> *resultNode = searchNode(root, 7);
+    cout << "Result Node data = " << resultNode->data << endl;
+
+    printRange(root, 6, 10);
+
+    delete root;
+}

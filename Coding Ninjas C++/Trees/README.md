@@ -3,6 +3,7 @@
 Types of trees :
 
 - Binary Trees
+- Binary Search Trees
 - AVL Trees
 
 Types of traversals for trees :
