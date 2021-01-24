@@ -18,4 +18,5 @@ Types of traversals for trees :
 - Counting number of nodes (Size of tree)
 - Printing all nodes at depth K
 - Tree Traversals
-- Binary Trees
+- Binary Trees (traversal, numNodes, height, diameter[in O(n) complexity])
+- Binary Search Trees
