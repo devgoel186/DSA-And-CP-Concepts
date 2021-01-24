@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 #include "./BinaryTreeNode.h"
 #include <queue>
@@ -113,6 +114,40 @@ int numNodes(BinaryTreeNode<int> *root)
     return 1 + numNodes(root->left) + numNodes(root->right);
 }
 
+int height(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+        return 0;
+    return 1 + max(height(root->left), height(root->right));
+}
+
+int treeDiameter(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+        return 0;
+    int option1 = height(root->left) + height(root->right);
+    int option2 = treeDiameter(root->left);
+    int option3 = treeDiameter(root->left);
+    return max({option1, option2, option3});
+}
+
+pair<int, int> heightDiameter(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+        return make_pair(0, 0);
+    pair<int, int> leftAns = heightDiameter(root->left);
+    pair<int, int> rightAns = heightDiameter(root->right);
+
+    int lh = leftAns.first;
+    int ld = leftAns.second;
+    int rh = rightAns.first;
+    int rd = rightAns.second;
+
+    int height = 1 + max(lh, rh);
+    int diameter = max({lh + rh, ld, rd});
+    return make_pair(height, diameter);
+}
+
 BinaryTreeNode<int> *takeInput()
 {
     int rootData;
@@ -174,10 +209,10 @@ int main()
 {
     // 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
     // BinaryTreeNode<int> *root = takeInput();
-    // BinaryTreeNode<int> *root = takeInputLevelWise();
-    int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
-    int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
-    BinaryTreeNode<int> *root = buildTree(in, pre, sizeof(in) / sizeof(in[0]));
+    BinaryTreeNode<int> *root = takeInputLevelWise();
+    // int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
+    // int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
+    // BinaryTreeNode<int> *root = buildTree(in, pre, sizeof(in) / sizeof(in[0]));
     printTreeLevelWise(root);
     cout << "Preorder : ";
     preorder(root);
@@ -187,5 +222,7 @@ int main()
     inorder(root);
     cout << endl;
     cout << "Number of nodes = " << numNodes(root) << endl;
+    cout << "Height of the tree = " << heightDiameter(root).first << endl;
+    cout << "Diameter of the tree = " << heightDiameter(root).second << endl;
     delete root;
 }
