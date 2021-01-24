@@ -173,6 +173,17 @@ isBSTReturn isBSTImproved(BinarySearchTreeNode<int> *root)
     return output;
 }
 
+bool isBST3(BinarySearchTreeNode<int> *root, int min = INT_MIN, int max = INT_MAX)
+{
+    if (root == NULL)
+        return true;
+    if (root->data < min || root->data > max)
+        return false;
+    bool leftCheck = isBST3(root->left, min, root->data);
+    bool rightCheck = isBST3(root->right, root->data, max);
+    return leftCheck && rightCheck;
+}
+
 int main()
 {
     // 4 2 6 1 3 5 7 -1 -1 -1 -1 -1 -1 -1 -1
@@ -180,7 +191,8 @@ int main()
     BinarySearchTreeNode<int> *root = takeInputLevelWise();
 
     // cout << (isBST(root) ? "Yes" : "No") << endl;
-    bool isBST = isBSTImproved(root).isBST;
+    // bool isBST = isBSTImproved(root).isBST;
+    bool isBST = isBST3(root);
     cout << "isBST? -> " << (isBST ? "Yes" : "No") << endl;
 
     if (isBST)
