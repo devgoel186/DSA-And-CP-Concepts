@@ -2,6 +2,7 @@
 using namespace std;
 #include "./BinarySearchTreeNode.h"
 #include <algorithm>
+#include <climits>
 #include <queue>
 
 BinarySearchTreeNode<int> *takeInputLevelWise()
@@ -103,11 +104,40 @@ BinarySearchTreeNode<int> *searchNode(BinarySearchTreeNode<int> *root, int k)
     return result;
 }
 
+int minimum(BinarySearchTreeNode<int> *root)
+{
+    if (root == NULL)
+        return INT_MAX;
+    return min({root->data, minimum(root->left), minimum(root->right)});
+}
+
+int maximum(BinarySearchTreeNode<int> *root)
+{
+    if (root == NULL)
+        return INT_MIN;
+    return max({root->data, maximum(root->left), maximum(root->right)});
+}
+
+bool isBST(BinarySearchTreeNode<int> *root)
+{
+    if (root == NULL)
+        return true;
+
+    int leftMax = maximum(root->left);
+    int rightMin = minimum(root->right);
+    bool output = (root->data > leftMax) &&
+                  (root->data < rightMin) &&
+                  isBST(root->left) &&
+                  isBST(root->right);
+    return output;
+}
+
 int main()
 {
     // 4 2 6 1 3 5 7 -1 -1 -1 -1 -1 -1 -1 -1
 
     BinarySearchTreeNode<int> *root = takeInputLevelWise();
+    cout << (isBST(root) ? "Yes" : "No") << endl;
     printTreeLevelWise(root);
 
     BinarySearchTreeNode<int> *resultNode = searchNode(root, 7);
