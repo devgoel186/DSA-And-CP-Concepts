@@ -71,6 +71,75 @@ void printTreeLevelWise(BinarySearchTreeNode<int> *root)
     }
 }
 
+template <typename T>
+class Node
+{
+public:
+    T data;
+    Node *next;
+
+    Node(T data)
+    {
+        this->data = data;
+        next = NULL;
+    }
+};
+
+void print(Node<int> *head)
+{
+    while (head != NULL)
+    {
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+
+template <typename T>
+class LL
+{
+public:
+    Node<T> *head;
+    Node<T> *tail;
+
+    LL()
+    {
+        head = NULL;
+        tail = NULL;
+    }
+};
+
+LL<int> *BSTtoLL(BinarySearchTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        LL<int> *temp = new LL<int>;
+        return temp;
+    }
+
+    LL<int> *lh = BSTtoLL(root->left);
+    LL<int> *rh = BSTtoLL(root->right);
+
+    Node<int> *newNode = new Node<int>(root->data);
+
+    if (lh->tail != NULL)
+        lh->tail->next = newNode;
+    newNode->next = rh->head;
+
+    LL<int> *final = new LL<int>;
+
+    if (lh->head == NULL)
+        final->head = newNode;
+    else
+        final->head = lh->head;
+
+    if (rh->tail == NULL)
+        final->tail = newNode;
+    else
+        final->tail = rh->tail;
+
+    return final;
+}
+
 void printRange(BinarySearchTreeNode<int> *root, int start, int end)
 {
     if (root == NULL)
@@ -198,11 +267,12 @@ int main()
     if (isBST)
     {
         printTreeLevelWise(root);
-
         BinarySearchTreeNode<int> *resultNode = searchNode(root, 7);
         cout << "Result Node data = " << resultNode->data << endl;
-
         printRange(root, 6, 10);
+        cout << endl;
+        LL<int> *LLhead = BSTtoLL(root);
+        print(LLhead->head);
     }
 
     delete root;
