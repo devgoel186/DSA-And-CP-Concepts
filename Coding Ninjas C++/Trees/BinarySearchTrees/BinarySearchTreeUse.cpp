@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#include "./BinarySearchTreeNode.h"
+#include "./BinarySearchTree.h"
 #include <algorithm>
 #include <climits>
 #include <queue>
@@ -257,23 +257,33 @@ int main()
 {
     // 4 2 6 1 3 5 7 -1 -1 -1 -1 -1 -1 -1 -1
 
-    BinarySearchTreeNode<int> *root = takeInputLevelWise();
+    // BinarySearchTreeNode<int> *root = takeInputLevelWise();
 
-    // cout << (isBST(root) ? "Yes" : "No") << endl;
-    // bool isBST = isBSTImproved(root).isBST;
-    bool isBST = isBST3(root);
-    cout << "isBST? -> " << (isBST ? "Yes" : "No") << endl;
+    // // cout << (isBST(root) ? "Yes" : "No") << endl;
+    // // bool isBST = isBSTImproved(root).isBST;
+    // bool isBST = isBST3(root);
+    // cout << "isBST? -> " << (isBST ? "Yes" : "No") << endl;
 
-    if (isBST)
-    {
-        printTreeLevelWise(root);
-        BinarySearchTreeNode<int> *resultNode = searchNode(root, 7);
-        cout << "Result Node data = " << resultNode->data << endl;
-        printRange(root, 6, 10);
-        cout << endl;
-        LL<int> *LLhead = BSTtoLL(root);
-        print(LLhead->head);
-    }
+    // if (isBST)
+    // {
+    //     printTreeLevelWise(root);
+    //     BinarySearchTreeNode<int> *resultNode = searchNode(root, 7);
+    //     cout << "Result Node data = " << resultNode->data << endl;
+    //     printRange(root, 6, 10);
+    //     cout << endl;
+    //     LL<int> *LLhead = BSTtoLL(root);
+    //     print(LLhead->head);
+    // }
 
-    delete root;
+    // delete root;
+    BST b;
+    b.insert(10);
+    b.insert(5);
+    b.insert(20);
+    b.insert(7);
+    b.insert(3);
+    b.insert(15);
+    b.deleteData(10);
+    b.deleteData(100);
+    b.printTreeLevelWise();
 }
