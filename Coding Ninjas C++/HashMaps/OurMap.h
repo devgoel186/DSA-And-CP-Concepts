@@ -27,13 +27,13 @@ class OurMap
 {
     MapNode<T> **buckets; // The nodes in our hash map are pointers to a pointer 2,
                           // where the pointer 2 points to the linked list.
-    int size;
+    int count;
     int bucketSize;
 
 public:
     OurMap()
     {
-        size = 0;
+        count = 0;
         bucketSize = 5;
         buckets = new MapNode<T> *[bucketSize]; // Initialize a bucket of type MapNode *
         for (int i = 0; i < bucketSize; i++)
@@ -85,6 +85,39 @@ public:
         return 0;
     }
 
+    void rehash()
+    {
+        MapNode<T> **temp = buckets;
+        buckets = new MapNode<T> *[2 * bucketSize];
+        for (int i = 0; i < 2 * bucketSize; i++)
+            buckets[i] = NULL;
+        int oldBucketCount = bucketSize;
+        bucketSize *= 2;
+        count = 0;
+        for (int i = 0; i < oldBucketCount; i++)
+        {
+            MapNode<T> *head = temp[i];
+            while (head != NULL)
+            {
+                string key = head->key;
+                T value = head->value;
+                insert(key, value);
+                head = head->next;
+            }
+        }
+        for (int i = 0; i < oldBucketCount; i++)
+        {
+            MapNode<T> *head = temp[i];
+            delete head;
+        }
+        delete[] temp;
+    }
+
+    double getLoadFactor()
+    {
+        return (1.0 * count) / bucketSize;
+    }
+
     void insert(string key, T value)
     {
         int bucketIndex = getBucketIndex(key);
@@ -103,6 +136,9 @@ public:
         node->next = head;
         buckets[bucketIndex] = node;
         count++;
+        double loadFactor = (1.0 * count) / bucketSize;
+        if (loadFactor > 0.7)
+            rehash();
     }
 
     T remove(string key)
