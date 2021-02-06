@@ -1,5 +1,20 @@
 # HashMaps
 
+HashMaps can be implemented by using two integral components which form the basis of HashMaps:
+
+- HashCode
+- Compression Function
+
+In case of collisions while assigning values in our unordered / hashmap, we have to look into collision handling techniques.
+These techniques are :
+
+- Closed Hashing -> Make each element of our bucket list / map as a head pointer to a Linked List, and store our colliding elements in the Linked List.
+- Open Addressing -> Involves finding an alternate space for incoming entry using
+
+  - Linear Probing -> f(i) = i
+  - Quadratic Probing -> f(i) = i^2
+  - Double Hashing -> f(i) = i\*h'(a)
+
 HashMaps can be defined in a simple manner to be key-value pairs.
 HashMaps can be implemented in three ways:
 
@@ -14,3 +29,8 @@ Functions in a hashmap :
 - delete key(K key)
 
 ## Contents
+
+- Iterators logic in C++
+- HashMap implementation
+- HashTables
+- Remove Duplicates program using unordered_map STL
