@@ -18,7 +18,7 @@ These techniques are :
 HashMaps can be defined in a simple manner to be key-value pairs.
 HashMaps can be implemented in three ways:
 
-- Using Linked Lists. All operations will take O(n) complexity.
+- Using Linked Lists. All operations will take O(n) complexity. However, this is the worst case, and in HashMaps the worst case is rarely achieved. On an average/mostly, the complexity comes out to be O(n/b) [ where n/b is the 'load factor'] where b is bucket size. We generally keep the load factor < 0.7.
 - Using BST (or ordered maps). All operations take O(log n).
 - Using Hash tables. All operations take O(1).
 

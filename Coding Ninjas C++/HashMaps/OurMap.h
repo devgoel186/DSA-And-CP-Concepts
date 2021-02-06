@@ -20,7 +20,7 @@ public:
     {
         delete next;
     }
-}
+};
 
 template <typename T>
 class OurMap
@@ -74,7 +74,7 @@ public:
 
     T getValue(string key)
     {
-        int bucketIndex = getBucketIndex(string key);
+        int bucketIndex = getBucketIndex(key);
         MapNode<T> *head = buckets[bucketIndex];
         while (head != NULL)
         {
@@ -87,7 +87,7 @@ public:
 
     void insert(string key, T value)
     {
-        int bucketIndex = getBucketIndex(string key);
+        int bucketIndex = getBucketIndex(key);
         MapNode<T> *head = buckets[bucketIndex];
         while (head != NULL)
         {
@@ -107,7 +107,7 @@ public:
 
     T remove(string key)
     {
-        int bucketIndex = getBucketIndex(string key);
+        int bucketIndex = getBucketIndex(key);
         MapNode<T> *head = buckets[bucketIndex];
         MapNode<T> *prev = head;
         while (head != NULL)
@@ -126,4 +126,4 @@ public:
         }
         return 0;
     }
-}
+};
