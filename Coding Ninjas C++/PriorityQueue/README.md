@@ -11,7 +11,7 @@ The functions in this data structure are :
 Priority Queues are implemented using **Heap data structure**.
 **Heap** is a data structure that can be implemented using complete binary trees, which in turn can be generalized through dynamic arrays or vectors.
 
-**Explanation for implementation of heaps using dynamic arrays**:\
+**Explanation for implementation of heaps using dynamic arrays**:
 
 The children for the ith element can be found at position 2i+1, 2i+2 in array. Also to get the parent we can perform the operation - (parent_index - 1)/2
 
