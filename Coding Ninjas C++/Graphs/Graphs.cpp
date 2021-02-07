@@ -1,10 +1,12 @@
 #include <iostream>
+#include <vector>
+#include <queue>
 using namespace std;
 
 // Depth-First-Search Approach (DFS)
-void print(int **edges, int n, int sv, bool *visited)
+void printDFS(int **edges, int n, int sv, bool *visited)
 {
-    cout << sv << endl;
+    cout << sv << " ";
     visited[sv] = true;
     for (int i = 0; i < n; i++)
     {
@@ -14,7 +16,29 @@ void print(int **edges, int n, int sv, bool *visited)
         {
             if (visited[i])
                 continue;
-            print(edges, n, i, visited);
+            printDFS(edges, n, i, visited);
+        }
+    }
+}
+
+// Breadth-First-Search (BFS)
+void printBFS(int **edges, int n, int sv, bool *visited)
+{
+    queue<int> pending;
+    pending.push(sv);
+    visited[sv] = true;
+    while (!pending.empty())
+    {
+        int currentVertex = pending.front();
+        pending.pop();
+        cout << currentVertex << " ";
+        for (int i = 0; i < n; i++)
+        {
+            if (edges[currentVertex][i] == 1 && !visited[i])
+            {
+                pending.push(i);
+                visited[i] = true;
+            }
         }
     }
 }
@@ -45,10 +69,22 @@ int main()
     }
 
     bool *visited = new bool[n];
+
+    // Initialize all vissited array elements by false
     for (int i = 0; i < n; i++)
     {
         visited[i] = false;
     }
 
-    print(edges, n, 0, visited);
+    cout << "DFS Traversal : ";
+    printDFS(edges, n, 0, visited);
+
+    // Initialize all vissited array elements by false
+    for (int i = 0; i < n; i++)
+    {
+        visited[i] = false;
+    }
+
+    cout << "\nBFS Traversal : ";
+    printBFS(edges, n, 0, visited);
 }
