@@ -17,13 +17,13 @@ The children for the ith element can be found at position 2i+1, 2i+2 in array. A
 
 There are two types of heaps :
 
-1. MinHeap - All childrens are greater than root value.
-2. MaxHeap - All childrens are smaller than root value.
+1. **MinHeap** - All childrens are greater than root value.
+2. **MaxHeap** - All childrens are smaller than root value.
 
-**Complexity of functions in Heaps**:
+## Complexity of functions in Heaps
 
-- Insert function = O(h) = O(log n) [This process also called up-heapify]
-- Delete function = O(h) = O(log n) [This process also called down-heapify]
+- Insert function = O(h) = O(log n) [This process also called **up-heapify**]
+- Delete function = O(h) = O(log n) [This process also called **down-heapify**]
 - Get function = O(1)+
 
 ## Contents

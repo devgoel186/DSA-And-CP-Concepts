@@ -2,10 +2,10 @@
 
 ## Types of Linked Lists
 
-- Singly Linked Lists
-- Doubly Linked Lists = Nodes store both forward and backward pointer
-- Circular Linked Lists = To find the length, make a full loop through the list
-- Circular Doubly Linked Lists = Circular ; Nodes store both forward and backward pointer
+- **Singly Linked Lists**
+- **Doubly Linked Lists** = Nodes store both forward and backward pointer
+- **Circular Linked Lists** = To find the length, make a full loop through the list
+- **Circular Doubly Linked Lists** = Circular ; Nodes store both forward and backward pointer
 
 ## Contents
 
