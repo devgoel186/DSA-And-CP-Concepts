@@ -27,3 +27,6 @@ There are two types of heaps :
 - Get function = O(1)+
 
 ## Contents
+
+- PriorityQueue implementation using heaps
+- PriorityQueue use code (example included)
