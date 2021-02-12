@@ -1,6 +1,6 @@
 # Graphs
 
-Graphs are basically nodes which may be conneted to other each other.
+Graphs are basically nodes which may be connected to each other.
 
 ## Differences between graphs and trees
 

@@ -65,7 +65,7 @@ int main()
         int fv, sv;
         cin >> fv >> sv;
         edges[fv][sv] = 1;
-        edges[fv][sv] = 1;
+        edges[sv][fv] = 1;
     }
 
     bool *visited = new bool[n];
