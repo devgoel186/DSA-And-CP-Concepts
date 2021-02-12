@@ -58,6 +58,11 @@ void DFS(int **edges, int n)
     delete[] visited;
 }
 
+// The basic difference here between disconnected and connected graphs is the visited array we have assumed.
+// When we call printDFS or printBFS on an 'i' value, all the nodes that exist as a connected component with i
+// will be marked as visited and the array will be returned. Then, we call printDFS or printBFS for the first
+// non-visited element we find in the visited array, because that will correspond to element in another connected
+// component of the graph.
 void BFS(int **edges, int n)
 {
     bool *visited = new bool[n];
