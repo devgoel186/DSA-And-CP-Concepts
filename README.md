@@ -25,7 +25,7 @@ Chapter-Wise concepts and implementations of important algorithms and CP concept
 - [TopCoder Tutorials](https://www.topcoder.com/community/competitive-programming/tutorials/)
 - [CodeChef DSA Learning Series](https://www.codechef.com/LEARNDSA?order=desc&sortBy=successful_submissions)
 
---> Complete Tutorial Videos on YouTube
+--> COMPLETE TUTORIAL VIDEOS ON YOUTUBE
 
 - [Algorithms Course - Graph Theory Tutorial](https://youtu.be/09_LlHjoEiY)
 - [Complete DSA Tutorial](https://youtu.be/B31LgI4Y4DQ)
